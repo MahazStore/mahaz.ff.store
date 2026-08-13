@@ -22,9 +22,30 @@ header{background:#07070b;border-bottom:1px solid #e51b2d;position:sticky;top:0;
 footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.footerLogo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #f01830}
 @media(max-width:800px){.features{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.hero h1{font-size:43px}.nav button{padding:9px 12px;font-size:14px}.tag{letter-spacing:2px}.brand{font-size:22px}.rankGrid{grid-template-columns:1fr}}
 @media(max-width:520px){.top{gap:8px}.actions{display:none}.avatar{width:50px;height:50px}.features{grid-template-columns:1fr}}
+
+#siteLock{position:fixed;inset:0;background:#050509;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
+#siteLock .lockBox{width:min(420px,100%);background:linear-gradient(145deg,#11111b,#09090f);border:1px solid #e51b2d;border-radius:20px;padding:32px;text-align:center;box-shadow:0 0 40px #e51b2d33}
+#siteLock .lockLogo{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #f01830;margin-bottom:12px}
+#siteLock input{width:100%;padding:15px;border-radius:10px;border:1px solid #5b1420;background:#050509;color:#fff;margin:15px 0;font-size:18px;text-align:center}
+#siteLock .lockBtn{background:#f01830;color:#fff;border:0;border-radius:25px;padding:13px 30px;font-weight:bold;font-size:16px;cursor:pointer}
+#lockError{color:#ff6b6b;min-height:20px;margin-top:12px}
+body.siteLocked{overflow:hidden}
 </style>
 </head>
-<body>
+<body class="siteLocked">
+
+<div id="siteLock">
+  <div class="lockBox">
+    <img class="lockLogo" src="mahaz-hero.png" alt="MAHAZ">
+    <h1><span style="color:#f01830">MAHAZ</span> STORE</h1>
+    <p style="color:#bbb">🔒 Enter password to access the website</p>
+    <input id="sitePassword" type="password" placeholder="Enter Password" autocomplete="off"
+      onkeydown="if(event.key==='Enter')unlockSite()">
+    <button class="lockBtn" onclick="unlockSite()">🔓 Unlock Website</button>
+    <div id="lockError"></div>
+  </div>
+</div>
+
 <header>
 <div class="top">
 <img class="avatar" src="mahaz-hero.png" alt="MAHAZ logo">
@@ -278,6 +299,33 @@ style="width:100%;padding:10px;margin:12px 0;background:#09090f;color:#fff;borde
 </section>
 
 <footer><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><p>MAHAZ STORE • CREATOR | DREAMER | LEGEND</p><p>© 2026 MAHAZ STORE. All Rights Reserved.</p></footer>
+
+
+<script>
+const SITE_PASSWORD = '2026';
+
+function unlockSite(){
+  const input = document.getElementById('sitePassword').value;
+  const error = document.getElementById('lockError');
+
+  if(input === SITE_PASSWORD){
+    document.getElementById('siteLock').style.display='none';
+    document.body.classList.remove('siteLocked');
+    sessionStorage.setItem('mahazUnlocked','1');
+  }else{
+    error.textContent='Incorrect password. Please try again.';
+    document.getElementById('sitePassword').value='';
+    document.getElementById('sitePassword').focus();
+  }
+}
+
+if(sessionStorage.getItem('mahazUnlocked') === '1'){
+  window.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('siteLock').style.display='none';
+    document.body.classList.remove('siteLocked');
+  });
+}
+</script>
 
 <script>
 let selectedDiamond=null, selectedPrice=null;
