@@ -137,17 +137,86 @@ style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;borde
 </section>
 
 <section id="guild" class="page">
-<h2 class="title">GUILD <span>GLORY</span></h2>
-<div class="box" style="margin:20px 3%">
+<h2 class="title">GUILD <span>GLORY BOT</span></h2>
+<div class="box" style="margin:20px auto;max-width:900px;text-align:left">
+<div style="text-align:center">
 <div class="icon">🏆</div>
 <h2>MAHAZ Guild Glory</h2>
-<p>Guild Glory leaderboard and member stats section.</p>
-<div class="products">
-<div class="box"><h3>Guild Glory</h3><p id="glory">Coming Soon</p></div>
-<div class="box"><h3>Top Player</h3><p id="topplayer">Coming Soon</p></div>
-<div class="box"><h3>Guild Rank</h3><p id="guildrank">Coming Soon</p></div>
+<p>Complete the 11-step order flow below.</p>
 </div>
-<button class="buy" onclick="wa('Guild Glory')">Contact for Guild Glory</button>
+
+<div class="box" style="margin:15px 0">
+<h3>1️⃣ Start</h3>
+<p>Start your Guild Glory order.</p>
+<button class="buy" onclick="guildStep(1)">Start Order</button>
+</div>
+
+<div id="guildStep2" class="box" style="display:none;margin:15px 0">
+<h3>2️⃣ Player ID</h3>
+<input id="guildPlayerId" placeholder="Enter Free Fire Player ID" inputmode="numeric"
+style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
+<button class="buy" onclick="guildStep(3)">Continue ›</button>
+</div>
+
+<div id="guildStep3" class="box" style="display:none;margin:15px 0">
+<h3>3️⃣ Select Guild Glory Package</h3>
+<div class="products" style="padding:10px 0">
+<div class="box"><h4>🏆 100 Glory</h4><button class="buy" onclick="selectGuildPackage('100 Glory',199)">Select</button></div>
+<div class="box"><h4>🏆 250 Glory</h4><button class="buy" onclick="selectGuildPackage('250 Glory',399)">Select</button></div>
+<div class="box"><h4>🏆 500 Glory</h4><button class="buy" onclick="selectGuildPackage('500 Glory',699)">Select</button></div>
+</div>
+</div>
+
+<div id="guildStep4" class="box" style="display:none;margin:15px 0">
+<h3>4️⃣ Price</h3>
+<p id="guildPrice">Select a package first.</p>
+<button class="buy" onclick="guildStep(5)">Continue ›</button>
+</div>
+
+<div id="guildStep5" class="box" style="display:none;margin:15px 0">
+<h3>5️⃣ Payment Method</h3>
+<button class="buy" onclick="selectGuildPayment('JazzCash')">🟢 JazzCash</button>
+<p id="guildPayment"></p>
+</div>
+
+<div id="guildStep6" class="box" style="display:none;margin:15px 0">
+<h3>6️⃣ Payment Proof</h3>
+<p>Send the amount to the displayed JazzCash number, then upload your transaction screenshot.</p>
+<div style="font-size:24px;font-weight:900;color:#39e56d">03155192240</div>
+<input id="guildProof" type="file" accept="image/*"
+style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
+<button class="buy" onclick="createGuildOrder()">Submit Payment Proof</button>
+<p id="guildProofStatus" style="color:#aaa"></p>
+</div>
+
+<div id="guildStep7" class="box" style="display:none;margin:15px 0">
+<h3>7️⃣ Order Created</h3>
+<p id="guildOrderCreated">Your order will be created after payment proof submission.</p>
+</div>
+
+<div id="guildStep8" class="box" style="display:none;margin:15px 0">
+<h3>8️⃣ Admin Notification</h3>
+<p>After submission, the order is sent to the store backend/admin order list.</p>
+</div>
+
+<div id="guildStep9" class="box" style="display:none;margin:15px 0">
+<h3>9️⃣ Payment Verification</h3>
+<p>Admin verifies the payment proof before processing the order.</p>
+</div>
+
+<div id="guildStep10" class="box" style="display:none;margin:15px 0">
+<h3>🔟 Processing</h3>
+<p id="guildProcessing">Your order is waiting for processing.</p>
+</div>
+
+<div id="guildStep11" class="box" style="display:none;margin:15px 0">
+<h3>1️⃣1️⃣ Completed / Rejected</h3>
+<p id="guildFinal">Your order status will appear here after admin review.</p>
+</div>
+
+<div style="text-align:center;margin-top:20px">
+<button class="wa" onclick="wa('Guild Glory Order')">Contact Support on WhatsApp ›</button>
+</div>
 </div>
 </section>
 
@@ -260,6 +329,77 @@ function wa(item){
   window.open('https://wa.me/923195162683?text='+msg,'_blank');
 }
 function selectProduct(item){wa(item);}
+
+
+let selectedGuildPackage=null, selectedGuildPrice=null, selectedGuildPayment=null;
+
+function guildStep(step){
+  if(step===1){
+    document.getElementById('guildStep2').style.display='block';
+  } else if(step===3){
+    const id=document.getElementById('guildPlayerId').value.trim();
+    if(!id){alert('Please enter your Free Fire Player ID.');return;}
+    document.getElementById('guildStep3').style.display='block';
+  } else {
+    const el=document.getElementById('guildStep'+step);
+    if(el) el.style.display='block';
+  }
+}
+
+function selectGuildPackage(pkg,price){
+  selectedGuildPackage=pkg;
+  selectedGuildPrice=price;
+  document.getElementById('guildPrice').innerHTML='<strong>'+pkg+'</strong> — Rs '+price;
+  document.getElementById('guildStep4').style.display='block';
+}
+
+function selectGuildPayment(method){
+  selectedGuildPayment=method;
+  document.getElementById('guildPayment').innerHTML='Selected: <strong>'+method+'</strong><br>Send payment to <strong style="color:#39e56d">03155192240</strong>.';
+  document.getElementById('guildStep6').style.display='block';
+}
+
+async function createGuildOrder(){
+  const id=document.getElementById('guildPlayerId').value.trim();
+  const file=document.getElementById('guildProof').files[0];
+  const status=document.getElementById('guildProofStatus');
+
+  if(!id){alert('Please enter your Free Fire Player ID.');return;}
+  if(!selectedGuildPackage){alert('Please select a Guild Glory package.');return;}
+  if(!selectedGuildPayment){alert('Please select a payment method.');return;}
+  if(!file){alert('Please upload your payment screenshot.');return;}
+
+  status.style.color='#aaa';
+  status.textContent='Submitting Guild Glory order...';
+
+  const fd=new FormData();
+  fd.append('playerId',id);
+  fd.append('diamonds',selectedGuildPackage);
+  fd.append('price',selectedGuildPrice);
+  fd.append('paymentMethod',selectedGuildPayment);
+  fd.append('paymentProof',file);
+  fd.append('orderType','Guild Glory');
+
+  try{
+    const r=await fetch('/api/orders',{method:'POST',body:fd});
+    const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Submission failed');
+
+    localStorage.setItem('lastGuildOrderId',data.orderId);
+    status.style.color='#39e56d';
+    status.textContent='Order submitted successfully! Order ID: '+data.orderId;
+
+    document.getElementById('guildStep7').style.display='block';
+    document.getElementById('guildOrderCreated').textContent='Order ID: '+data.orderId;
+    document.getElementById('guildStep8').style.display='block';
+    document.getElementById('guildStep9').style.display='block';
+    document.getElementById('guildStep10').style.display='block';
+    document.getElementById('guildStep11').style.display='block';
+  }catch(e){
+    status.style.color='#ff6b6b';
+    status.textContent=e.message;
+  }
+}
 
 function saveAccount(){
   localStorage.setItem('mahazAccount',JSON.stringify({
