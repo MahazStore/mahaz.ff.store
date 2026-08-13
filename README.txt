@@ -1,1 +1,1 @@
-Free Fire prices: 70=Rs99, 140=Rs199, 355=Rs499, 720=Rs999. JazzCash: 03155192240.
+
