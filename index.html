@@ -33,7 +33,7 @@ footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.f
 <button onclick="show('store',this)">🎮 Store</button>
 <button onclick="show('freefire',this)">🔥 Free Fire</button><button onclick="show('topup',this)">💎 Top Up</button><button onclick="show('payment',this)">💳 Payment</button><button onclick="show('guild',this)">🏆 Guild Glory</button>
 <button onclick="show('about',this)">★ About</button>
-<button onclick="show('contact',this)">◉ Contact</button>
+<button onclick="show('contact',this)">◉ Contact</button><button onclick="show('account',this)">👤 Account</button><button onclick="show('orders',this)">📦 Orders</button><button onclick="show('admin',this)">🛠️ Admin</button>
 </div>
 </header>
 
@@ -62,6 +62,9 @@ footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.f
 <div class="box"><div class="icon">🎮</div><h3>Free Fire</h3><p>Top Up & Gaming Services</p><button class="buy" onclick="wa('Free Fire')">Order</button></div>
 <div class="box"><div class="icon">🎯</div><h3>PUBG Mobile</h3><p>UC & Gaming Services</p><button class="buy" onclick="wa('PUBG Mobile')">Order</button></div>
 <div class="box"><div class="icon">🛒</div><h3>Digital Store</h3><p>Digital products</p><button class="buy" onclick="wa('Digital Store')">Order</button></div>
+<div class="box"><div class="icon">💎</div><h3>Monthly Membership</h3><p>Special member offers</p><button class="buy" onclick="selectProduct('Monthly Membership')">Buy Now</button></div>
+<div class="box"><div class="icon">🎁</div><h3>Weekly Membership</h3><p>Weekly gaming benefits</p><button class="buy" onclick="selectProduct('Weekly Membership')">Buy Now</button></div>
+
 </div></section>
 
 <section id="freefire" class="page"><h2 class="title">FREE <span>FIRE</span></h2><div class="box" style="margin:20px 3%"><h2>Free Fire Services</h2><p>Contact MAHAZ STORE for available services.</p><button class="buy" onclick="wa('Free Fire Services')">Contact on WhatsApp</button></div></section>
@@ -96,10 +99,10 @@ style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;backg
 
 <h2>📸 Step 4 — Transaction Screenshot</h2>
 <p>After payment, upload your transaction screenshot.</p>
-<input id="proof" type="file" accept="image/*"
+<input id="paymentProof" type="file" accept="image/*"
 style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
 <button class="buy" onclick="submitProof()">Submit Payment Proof</button>
-<p id="proofStatus" style="color:#aaa"></p>
+<p id="paymentProofStatus" style="color:#aaa"></p>
 </div>
 </div>
 </section>
@@ -119,7 +122,7 @@ style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;borde
 <div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
 <p>Payment karne ke baad neeche apna Free Fire Player ID enter karke WhatsApp par order details bhejo.</p>
 </div>
-<input id="playerId" placeholder="Free Fire Player ID" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin-bottom:12px">
+<input id="paymentPlayerId" placeholder="Free Fire Player ID" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin-bottom:12px">
 <button class="buy" onclick="continueOrder()">Continue to Order</button>
 
 <div id="proofBox" style="display:none;margin-top:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px;text-align:left">
@@ -153,29 +156,58 @@ style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;borde
 <section id="contact" class="page"><div class="box" style="margin:40px 6%"><h2>Contact MAHAZ STORE</h2><p>WhatsApp support</p><button class="wa" onclick="wa('General Inquiry')">Open WhatsApp</button></div></section>
 </main>
 
+
+<section id="account" class="page">
+  <h2 class="title">MY <span>ACCOUNT</span></h2>
+  <div class="box" style="margin:20px auto;max-width:650px;text-align:left">
+    <h2>👤 Customer Account</h2>
+    <input id="accountName" placeholder="Your name" style="width:100%;padding:14px;margin:7px 0;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
+    <input id="accountPhone" placeholder="WhatsApp number" style="width:100%;padding:14px;margin:7px 0;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
+    <button class="buy" onclick="saveAccount()">Save Account</button>
+    <p id="accountStatus" style="color:#aaa"></p>
+  </div>
+</section>
+
+<section id="orders" class="page">
+  <h2 class="title">MY <span>ORDERS</span></h2>
+  <div class="box" style="margin:20px auto;max-width:850px;text-align:left">
+    <input id="orderSearch" placeholder="Enter Order ID" style="width:100%;padding:14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
+    <button class="buy" onclick="lookupOrder()">Track Order</button>
+    <div id="orderResult" style="margin-top:15px;color:#bbb"></div>
+  </div>
+</section>
+
+<section id="admin" class="page">
+  <h2 class="title">ADMIN <span>PANEL</span></h2>
+  <div class="box" style="margin:20px auto;max-width:950px;text-align:left">
+    <p>Admin panel: enter your admin key to load orders.</p>
+    <input id="adminKey" type="password" placeholder="Admin key" style="width:100%;padding:14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
+    <button class="buy" onclick="loadAdminOrders()">Load Orders</button>
+    <div id="adminOrders" style="overflow:auto;margin-top:15px"></div>
+  </div>
+</section>
+
 <footer><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><p>MAHAZ STORE • CREATOR | DREAMER | LEGEND</p><p>© 2026 MAHAZ STORE. All Rights Reserved.</p></footer>
 
+
 <script>
-let selectedDiamond = null;
-let selectedPrice = null;
+let selectedDiamond=null, selectedPrice=null;
 
 function show(id,btn){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const page=document.getElementById(id);
+  if(page) page.classList.add('active');
   document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
   if(btn) btn.classList.add('active');
   scrollTo(0,0);
 }
 
 function selectDiamond(diamond,price){
-  selectedDiamond=diamond;
-  selectedPrice=price;
-  document.getElementById('selectedText').innerHTML =
-    'Selected: <strong style="color:#f01830">'+diamond+' Diamonds — Rs '+price+'</strong>';
+  selectedDiamond=diamond; selectedPrice=price;
+  document.getElementById('selectedText').innerHTML='Selected: <strong style="color:#f01830">'+diamond+' Diamonds — Rs '+price+'</strong>';
   document.getElementById('orderStep').style.display='block';
   document.getElementById('paymentStep').style.display='none';
-  document.getElementById('orderSummary').innerHTML =
-    '💎 Package: <strong>'+diamond+' Diamonds</strong><br>💰 Price: <strong>Rs '+price+'</strong>';
+  document.getElementById('orderSummary').innerHTML='💎 Package: <strong>'+diamond+' Diamonds</strong><br>💰 Price: <strong>Rs '+price+'</strong>';
   document.getElementById('orderStep').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -188,19 +220,87 @@ function continueOrder(){
   document.getElementById('paymentStep').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function submitProof(){
+async function submitProof(){
   const id=document.getElementById('playerId').value.trim();
   const file=document.getElementById('proof').files[0];
   if(!selectedDiamond){alert('Please select a diamond package first.');return;}
   if(!id){alert('Please enter your Free Fire Player ID.');return;}
   if(!file){alert('Please upload your JazzCash transaction screenshot.');return;}
-  document.getElementById('proofStatus').textContent =
-    'Payment proof selected: '+file.name+'. To actually receive/store this screenshot, connect the form to a backend or upload service.';
+  const status=document.getElementById('proofStatus'); status.textContent='Submitting order...';
+  const fd=new FormData();
+  fd.append('playerId',id); fd.append('diamonds',selectedDiamond); fd.append('price',selectedPrice);
+  fd.append('paymentMethod','JazzCash'); fd.append('paymentProof',file);
+  try{
+    const r=await fetch('/api/orders',{method:'POST',body:fd});
+    const data=await r.json(); if(!r.ok) throw new Error(data.message||'Submission failed');
+    localStorage.setItem('lastOrderId',data.orderId);
+    status.style.color='#39e56d'; status.textContent='Order submitted! Order ID: '+data.orderId;
+  }catch(e){status.style.color='#ff6b6b';status.textContent=e.message;}
+}
+
+function showJazzCash(){document.getElementById('jazzcashBox').style.display='block';}
+async function submitPaymentPage(){
+  const id=document.getElementById('paymentPlayerId').value.trim();
+  const file=document.getElementById('paymentProof').files[0];
+  const status=document.getElementById('paymentProofStatus');
+  if(!id || !file){status.textContent='Enter Player ID and upload screenshot.';return;}
+  const fd=new FormData();
+  fd.append('playerId',id); fd.append('diamonds','Payment Page Order'); fd.append('price','N/A');
+  fd.append('paymentMethod','JazzCash'); fd.append('paymentProof',file);
+  status.textContent='Submitting...';
+  try{
+    const r=await fetch('/api/orders',{method:'POST',body:fd}); const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Failed');
+    status.style.color='#39e56d'; status.textContent='Submitted. Order ID: '+data.orderId;
+  }catch(e){status.style.color='#ff6b6b';status.textContent=e.message;}
 }
 
 function wa(item){
   const msg=encodeURIComponent('Hello MAHAZ STORE, I want to ask/order: '+item);
   window.open('https://wa.me/923195162683?text='+msg,'_blank');
 }
+function selectProduct(item){wa(item);}
+
+function saveAccount(){
+  localStorage.setItem('mahazAccount',JSON.stringify({
+    name:document.getElementById('accountName').value.trim(),
+    phone:document.getElementById('accountPhone').value.trim()
+  }));
+  document.getElementById('accountStatus').textContent='Account details saved on this device.';
+}
+function loadAccount(){
+  try{
+    const a=JSON.parse(localStorage.getItem('mahazAccount')||'null');
+    if(a){document.getElementById('accountName').value=a.name||'';document.getElementById('accountPhone').value=a.phone||'';}
+  }catch{}
+}
+
+async function lookupOrder(){
+  const id=document.getElementById('orderSearch').value.trim();
+  const out=document.getElementById('orderResult');
+  if(!id){out.textContent='Enter an Order ID.';return;}
+  out.textContent='Checking...';
+  try{
+    const r=await fetch('/api/orders/'+encodeURIComponent(id)); const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Order not found');
+    out.innerHTML='<b>Order:</b> '+data.orderId+'<br><b>Player ID:</b> '+data.playerId+
+      '<br><b>Diamonds:</b> '+data.diamonds+'<br><b>Price:</b> Rs '+data.price+
+      '<br><b>Status:</b> '+data.status+'<br><b>Created:</b> '+new Date(data.createdAt).toLocaleString();
+  }catch(e){out.textContent=e.message;}
+}
+
+async function loadAdminOrders(){
+  const key=document.getElementById('adminKey').value;
+  const out=document.getElementById('adminOrders'); out.textContent='Loading...';
+  try{
+    const r=await fetch('/api/orders',{headers:{'x-admin-key':key}}); const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Unauthorized');
+    if(!data.length){out.textContent='No orders yet.';return;}
+    out.innerHTML='<table style="width:100%;border-collapse:collapse"><tr><th>Order</th><th>Player ID</th><th>Diamonds</th><th>Price</th><th>Status</th><th>Proof</th></tr>'+
+      data.map(o=>'<tr><td>'+o.orderId+'</td><td>'+o.playerId+'</td><td>'+o.diamonds+'</td><td>'+o.price+'</td><td>'+o.status+'</td><td><a href="/uploads/'+encodeURIComponent(o.paymentProof.filename)+'" target="_blank">View</a></td></tr>').join('')+'</table>';
+  }catch(e){out.textContent=e.message;}
+}
+loadAccount();
 </script>
+
 </body></html>Free Fire prices: 70=Rs99, 140=Rs199, 355=Rs499, 720=Rs999. JazzCash: 03155192240.
