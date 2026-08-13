@@ -60,7 +60,7 @@ body.siteLocked{overflow:hidden}
 <button onclick="show('payment',this)">💳 Payment</button>
 <button onclick="show('guild',this)">🏆 Guild Glory</button>
 <button onclick="show('rankpush',this)">🚀 Rank Push</button>
-<button onclick="show('tournament',this)">🏆 Tournament</button>
+<button onclick="show('tournament',this)">🏆 Tournament</button><button onclick="show('paidsensi',this)">🎯 Paid Sensi</button>
 <button onclick="show('about',this)">★ About</button>
 <button onclick="show('contact',this)">◉ Contact</button>
 <button onclick="show('account',this)">👤 Account</button>
@@ -96,6 +96,7 @@ body.siteLocked{overflow:hidden}
 <div class="box"><div class="icon">🎁</div><h3>Weekly Membership</h3><p>Weekly gaming benefits</p><button class="buy" onclick="selectProduct('Weekly Membership')">Buy Now</button></div>
 <div class="box"><div class="icon">🚀</div><h3>Paid Rank Push</h3><p>Choose your target rank</p><button class="buy" onclick="show('rankpush')">Order</button></div>
 <div class="box" onclick="show('tournament')" style="cursor:pointer"><div class="icon">🏆</div><h3>Daily Tournament</h3><p>BR • 7:00 PM • Rs 50</p><button class="buy" onclick="event.stopPropagation();show('tournament')">Join Now</button></div>
+<div class="box" onclick="show('paidsensi')" style="cursor:pointer"><div class="icon">🎯</div><h3>Paid Sensi</h3><p>Device-based sensitivity service</p><button class="buy" onclick="event.stopPropagation();show('paidsensi')">Open</button></div>
 </div></section>
 
 <section id="freefire" class="page"><h2 class="title">FREE <span>FIRE</span></h2><div class="box" style="margin:20px 3%"><h2>Free Fire Services</h2><p>Contact MAHAZ STORE for available services.</p><button class="buy" onclick="wa('Free Fire Services')">Contact on WhatsApp</button></div></section>
@@ -166,6 +167,68 @@ body.siteLocked{overflow:hidden}
 </section>
 
 <!-- PAID RANK PUSH -->
+
+
+<section id="paidsensi" class="page">
+<h2 class="title">🎯 PAID <span>SENSI</span></h2>
+<div class="box" style="margin:20px auto;max-width:700px;text-align:left">
+<div style="text-align:center">
+<div class="icon">🎯</div>
+<h2>Paid Sensitivity Service</h2>
+<p style="color:#bbb">Select your device, pay via JazzCash, upload proof and receive your order ID.</p>
+</div>
+
+<h3 style="margin-top:24px">1️⃣ Select Device</h3>
+<select id="sensiDevice" onchange="toggleAndroidModels()" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
+<option value="">Select Device</option>
+<option value="Android">Android</option>
+</select>
+
+<div id="androidModelBox" style="display:none">
+<h3 style="margin-top:20px">2️⃣ Android Device Model</h3>
+<select id="sensiModel" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
+<option value="">Select Android Model</option>
+<option>Samsung</option>
+<option>Xiaomi / Redmi / POCO</option>
+<option>Vivo</option>
+<option>OPPO</option>
+<option>Realme</option>
+<option>Infinix</option>
+<option>Tecno</option>
+<option>OnePlus</option>
+<option>Google Pixel</option>
+<option>Huawei</option>
+<option>Other</option>
+</select>
+</div>
+
+<h3 style="margin-top:20px">3️⃣ Free Fire Player ID</h3>
+<input id="sensiPlayerId" placeholder="Enter Free Fire Player ID" inputmode="numeric"
+style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
+
+<h3 style="margin-top:20px">4️⃣ JazzCash Payment</h3>
+<div style="background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px">
+<p>Send your payment to JazzCash:</p>
+<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
+<p style="color:#aaa">Payment amount service ke mutabiq admin se confirm karein.</p>
+</div>
+
+<h3 style="margin-top:20px">5️⃣ Payment Screenshot</h3>
+<input id="sensiProof" type="file" accept="image/*"
+style="width:100%;padding:10px;margin:8px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
+
+<p id="sensiStatus" style="color:#aaa;margin-top:14px"></p>
+<button class="buy" onclick="submitPaidSensi()">Submit Paid Sensi ✓</button>
+
+<div id="sensiSuccess" style="display:none;margin-top:20px;text-align:center;padding:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px">
+<div style="font-size:55px">✅</div>
+<h2 style="color:#39e56d">Order Submitted!</h2>
+<p>Your Paid Sensi order has been submitted for verification.</p>
+<p>Order ID: <strong id="sensiOrderId" style="color:#39e56d"></strong></p>
+<button class="wa" onclick="wa('Paid Sensi Order')" style="margin-top:10px">Contact Support ›</button>
+</div>
+</div>
+</section>
 
 <section id="tournament" class="page">
 <h2 class="title">DAILY <span>TOURNAMENT</span></h2>
@@ -300,6 +363,56 @@ style="width:100%;padding:10px;margin:12px 0;background:#09090f;color:#fff;borde
 
 <footer><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><p>MAHAZ STORE • CREATOR | DREAMER | LEGEND</p><p>© 2026 MAHAZ STORE. All Rights Reserved.</p></footer>
 
+
+
+<script>
+function toggleAndroidModels(){
+  const device=document.getElementById('sensiDevice').value;
+  document.getElementById('androidModelBox').style.display = device === 'Android' ? 'block' : 'none';
+}
+</script>
+
+<script>
+async function submitPaidSensi(){
+  const device=document.getElementById('sensiDevice').value;
+  const model=document.getElementById('sensiModel')?.value || '';
+  const playerId=document.getElementById('sensiPlayerId').value.trim();
+  const proof=document.getElementById('sensiProof').files[0];
+  const status=document.getElementById('sensiStatus');
+
+  if(!device){status.style.color='#ff6b6b';status.textContent='Please select your device.';return;}
+  if(device==='Android' && !model){status.style.color='#ff6b6b';status.textContent='Please select your Android device model.';return;}
+  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Free Fire Player ID.';return;}
+  if(!proof){status.style.color='#ff6b6b';status.textContent='Please upload your JazzCash payment screenshot.';return;}
+  if(proof.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='Screenshot must be 5MB or smaller.';return;}
+
+  status.style.color='#aaa';
+  status.textContent='Submitting order...';
+
+  const fd=new FormData();
+  fd.append('orderType','Paid Sensi');
+  fd.append('device',device);
+  fd.append('deviceModel',model);
+  fd.append('playerId',playerId);
+  fd.append('paymentMethod','JazzCash');
+  fd.append('jazzCashNumber','03155192240');
+  fd.append('paymentProof',proof);
+
+  try{
+    const r=await fetch('/api/paid-sensi',{method:'POST',body:fd});
+    const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Order submission failed.');
+    const id=data.orderId||('SENSI-'+Date.now().toString().slice(-8));
+    document.getElementById('sensiOrderId').textContent=id;
+    document.getElementById('sensiSuccess').style.display='block';
+    status.textContent='';
+    localStorage.setItem('lastPaidSensiOrderId',id);
+  }catch(e){
+    status.style.color='#ff6b6b';
+    status.textContent=e.message||'Could not submit order.';
+  }
+}
+</script>
 
 <script>
 const SITE_PASSWORD = '2026';
