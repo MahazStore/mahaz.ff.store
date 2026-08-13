@@ -1,19 +1,162 @@
-<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>MAHAZ STORE</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAHAZ STORE</title>
 <style>
-body{margin:0;background:#07070b;color:#fff;font-family:Arial}.wrap{max-width:800px;margin:auto;padding:20px}h1{text-align:center;color:#f01830}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.card,.box{background:#14141e;border:1px solid #4b1019;border-radius:16px;padding:20px;text-align:center}.diamond{font-size:27px}.price{font-size:24px;color:#39e56d;font-weight:bold;margin:10px}button{background:#f01830;color:#fff;border:0;border-radius:9px;padding:12px 20px;font-weight:bold}input{width:100%;padding:13px;box-sizing:border-box;margin:8px 0;background:#09090f;color:#fff;border:1px solid #555;border-radius:9px}.jazz{background:#07120a;border:1px solid #16b84e;padding:15px;border-radius:12px}.jnum{font-size:25px;color:#39e56d;font-weight:bold}#order{display:none;margin-top:20px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
-</style></head><body><div class="wrap"><h1>🔥 FREE FIRE TOP UP</h1>
-<p style="text-align:center">Select your Diamond package</p><div class="grid">
-<div class="card"><div class="diamond">💎 70 Diamonds</div><div class="price">Rs 99</div><button onclick="choose('70 Diamonds','Rs 99')">Select</button></div>
-<div class="card"><div class="diamond">💎 140 Diamonds</div><div class="price">Rs 199</div><button onclick="choose('140 Diamonds','Rs 199')">Select</button></div>
-<div class="card"><div class="diamond">💎 355 Diamonds</div><div class="price">Rs 499</div><button onclick="choose('355 Diamonds','Rs 499')">Select</button></div>
-<div class="card"><div class="diamond">💎 720 Diamonds</div><div class="price">Rs 999</div><button onclick="choose('720 Diamonds','Rs 999')">Select</button></div></div>
-<div id="order" class="box"><h2 id="chosen"></h2><input id="pid" placeholder="Free Fire Player ID"><button onclick="pay()">Continue to Order</button>
-<div id="payment" style="display:none;margin-top:18px"><div class="jazz"><b>🟢 JazzCash Payment</b><p>Send payment to:</p><div class="jnum">03155192240</div></div>
-<p>Transaction screenshot upload karein:</p><input id="proof" type="file" accept="image/*"><button onclick="submitProof()">Submit Payment Proof</button><p id="msg"></p></div></div></div>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#050509;color:#fff;font-family:Arial,sans-serif}
+header{background:#07070b;border-bottom:1px solid #e51b2d;position:sticky;top:0;z-index:20}
+.top{min-height:88px;padding:10px 3%;display:flex;align-items:center;gap:18px}.avatar{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid #f01830}
+.brand{font-size:30px;font-weight:900;font-style:italic}.brand b{color:#f01830}.tag{font-size:11px;letter-spacing:5px;color:#ddd;margin-top:4px}
+.actions{margin-left:auto;display:flex;gap:10px}.circle{width:46px;height:46px;border:1px solid #555;border-radius:50%;display:grid;place-items:center;background:#090910;color:white;font-size:22px}
+.nav{display:flex;justify-content:center;gap:8px;padding:8px;border-top:1px solid #191923}.nav button{border:0;background:transparent;color:#fff;padding:11px 28px;border-radius:10px;font-size:17px;cursor:pointer}.nav button:hover,.nav .active{background:#ed172b}
+.page{display:none}.page.active{display:block}.hero{margin:8px;border:1px solid #e51b2d;border-radius:20px;min-height:460px;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.15)),url('mahaz-hero.png') center/cover;display:flex;align-items:center;padding:7%}
+.heroText{max-width:520px}.hero h1{font-size:60px;line-height:.95;margin:10px 0}.hero h1 span{color:#f01830}.hero p{letter-spacing:4px;font-weight:bold}.shop{background:#f01830;color:#fff;border:0;border-radius:30px;padding:15px 32px;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 0 20px #f0183055}
+.features,.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:18px 3%}.products{grid-template-columns:repeat(3,1fr)}.box{background:linear-gradient(145deg,#11111b,#09090f);border:1px solid #4b1019;border-radius:18px;padding:25px;text-align:center}.icon{font-size:40px}.box h3{margin:10px 0}.box p{color:#bbb}.buy{background:#f01830;color:#fff;border:0;border-radius:20px;padding:10px 22px;font-weight:bold;cursor:pointer}
+.title{text-align:center;font-size:40px;font-style:italic}.title span{color:#f01830}
+.help{margin:20px 3%;padding:20px;border:1px solid #e51b2d;border-radius:18px;display:flex;justify-content:space-between;align-items:center;background:#16070b}.wa{background:#12b83f;color:#fff;border:0;border-radius:30px;padding:15px 25px;font-weight:bold;cursor:pointer}
+footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.footerLogo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #f01830}
+@media(max-width:800px){.features{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.hero h1{font-size:43px}.nav button{padding:9px 10px;font-size:14px}.tag{letter-spacing:2px}.brand{font-size:22px}}
+@media(max-width:520px){.top{gap:8px}.actions{display:none}.avatar{width:50px;height:50px}.features{grid-template-columns:1fr}.hero{min-height:400px}}
+</style>
+</head>
+<body>
+<header>
+<div class="top">
+<img class="avatar" src="mahaz-hero.png" alt="MAHAZ logo">
+<div><div class="brand"><b>MAHAZ</b> STORE</div><div class="tag">CREATOR | DREAMER | LEGEND</div></div>
+<div class="actions"><div class="circle">⌕</div><div class="circle">🛒</div><div class="circle">◉</div></div>
+</div>
+<div class="nav">
+<button class="active" onclick="show('home',this)">⌂ Home</button>
+<button onclick="show('store',this)">🎮 Store</button>
+<button onclick="show('freefire',this)">🔥 Free Fire</button><button onclick="show('topup',this)">💎 Top Up</button><button onclick="show('payment',this)">💳 Payment</button><button onclick="show('guild',this)">🏆 Guild Glory</button>
+<button onclick="show('about',this)">★ About</button>
+<button onclick="show('contact',this)">◉ Contact</button>
+</div>
+</header>
+
+<main>
+<section id="home" class="page active">
+<div class="hero"><div class="heroText"><p>WELCOME TO</p><h1><span>MAHAZ</span><br>STORE</h1><p>YOUR TRUSTED <span>GAMING</span> PARTNER</p><button class="shop" onclick="show('store')">SHOP NOW ›</button></div></div>
+<div class="features">
+<div class="box"><div class="icon">⚡</div><h3>FAST DELIVERY</h3><p>Instant Service</p></div>
+<div class="box"><div class="icon">🛡️</div><h3>100% SAFE</h3><p>Trusted & Secure</p></div>
+<div class="box"><div class="icon">🎧</div><h3>24/7 SUPPORT</h3><p>Always Here</p></div>
+<div class="box"><div class="icon">★</div><h3>BEST PRICES</h3><p>More Value</p></div>
+</div>
+<h2 class="title">FEATURED <span>PRODUCTS</span></h2>
+<div class="products">
+<div class="box" onclick="show('topup')" style="cursor:pointer">
+<div class="icon">🎮</div><h3>Free Fire Top Up</h3><p>Diamonds & Bundles</p>
+<button class="buy" onclick="event.stopPropagation();show('topup')">Open Top Up</button>
+</div>
+<div class="box"><div class="icon">🎮</div><h3>PUBG Mobile Top Up</h3><p>UC & Royale Pass</p><button class="buy" onclick="wa('PUBG Mobile Top Up')">Buy Now</button></div>
+<div class="box"><div class="icon">🔥</div><h3>Free Fire MAX</h3><p>Diamonds & Bundles</p><button class="buy" onclick="wa('Free Fire MAX Top Up')">Buy Now</button></div>
+</div>
+<div class="help"><div><h2>Need Help?</h2><p>Contact us on WhatsApp</p></div><button class="wa" onclick="wa('General Inquiry')">Chat on WhatsApp ›</button></div>
+</section>
+
+<section id="store" class="page"><h2 class="title">OUR <span>STORE</span></h2><div class="products">
+<div class="box"><div class="icon">🎮</div><h3>Free Fire</h3><p>Top Up & Gaming Services</p><button class="buy" onclick="wa('Free Fire')">Order</button></div>
+<div class="box"><div class="icon">🎯</div><h3>PUBG Mobile</h3><p>UC & Gaming Services</p><button class="buy" onclick="wa('PUBG Mobile')">Order</button></div>
+<div class="box"><div class="icon">🛒</div><h3>Digital Store</h3><p>Digital products</p><button class="buy" onclick="wa('Digital Store')">Order</button></div>
+</div></section>
+
+<section id="freefire" class="page"><h2 class="title">FREE <span>FIRE</span></h2><div class="box" style="margin:20px 3%"><h2>Free Fire Services</h2><p>Contact MAHAZ STORE for available services.</p><button class="buy" onclick="wa('Free Fire Services')">Contact on WhatsApp</button></div></section>
+
+
+
+<section id="topup" class="page">
+<h2 class="title">FREE FIRE <span>TOP UP</span></h2>
+<div class="box" style="margin:20px 3%;max-width:850px;margin-left:auto;margin-right:auto">
+<h2>💎 Select Diamonds</h2>
+<p>Choose a package below, then contact MAHAZ STORE on WhatsApp to place your order.</p>
+<div class="products" style="padding:18px 0">
+<div class="box"><h3>💎 100 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('100 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 310 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('310 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 520 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('520 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 1060 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('1060 Diamonds')">Order</button></div>
+</div>
+<button class="buy" onclick="wa('Free Fire Top Up')">Order on WhatsApp</button> <button class="buy" onclick="show('payment')">💳 Payment</button>
+</div>
+</section>
+
+
+<section id="payment" class="page">
+<h2 class="title">SELECT <span>PAYMENT</span></h2>
+<div class="box" style="margin:20px auto;max-width:620px">
+<h2>💳 Payment Method</h2>
+<p>Pay securely using JazzCash.</p>
+<div style="margin:18px 0">
+<button class="buy" onclick="showJazzCash()">🟢 JazzCash</button>
+</div>
+<div id="jazzcashBox" style="display:none;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px;margin:15px 0">
+<h3>🟢 JazzCash Payment</h3>
+<p>JazzCash Number:</p>
+<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
+<p>Payment karne ke baad neeche apna Free Fire Player ID enter karke WhatsApp par order details bhejo.</p>
+</div>
+<input id="playerId" placeholder="Free Fire Player ID" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin-bottom:12px">
+<button class="buy" onclick="continueOrder()">Continue to Order</button>
+
+<div id="proofBox" style="display:none;margin-top:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px;text-align:left">
+<h3>🧾 JazzCash Payment Proof</h3>
+<p>JazzCash Number: <strong style="color:#39e56d">03155192240</strong></p>
+<p>Payment transaction ki screenshot/photo upload karein:</p>
+<input id="proof" type="file" accept="image/*" style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
+<button class="buy" onclick="submitProof()">Submit Payment Proof</button>
+<p id="proofStatus" style="color:#aaa"></p>
+</div>
+</div>
+</section>
+
+<section id="guild" class="page">
+<h2 class="title">GUILD <span>GLORY</span></h2>
+<div class="box" style="margin:20px 3%">
+<div class="icon">🏆</div>
+<h2>MAHAZ Guild Glory</h2>
+<p>Guild Glory leaderboard and member stats section.</p>
+<div class="products">
+<div class="box"><h3>Guild Glory</h3><p id="glory">Coming Soon</p></div>
+<div class="box"><h3>Top Player</h3><p id="topplayer">Coming Soon</p></div>
+<div class="box"><h3>Guild Rank</h3><p id="guildrank">Coming Soon</p></div>
+</div>
+<button class="buy" onclick="wa('Guild Glory')">Contact for Guild Glory</button>
+</div>
+</section>
+
+<section id="about" class="page"><div class="box" style="margin:40px 6%"><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><h2>About MAHAZ STORE</h2><p>Gaming-focused store interface with a cyberpunk MAHAZ theme.</p></div></section>
+
+<section id="contact" class="page"><div class="box" style="margin:40px 6%"><h2>Contact MAHAZ STORE</h2><p>WhatsApp support</p><button class="wa" onclick="wa('General Inquiry')">Open WhatsApp</button></div></section>
+</main>
+
+<footer><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><p>MAHAZ STORE • CREATOR | DREAMER | LEGEND</p><p>© 2026 MAHAZ STORE. All Rights Reserved.</p></footer>
+
 <script>
-let pkg='',price='';
-function choose(a,b){pkg=a;price=b;document.getElementById('order').style.display='block';document.getElementById('chosen').textContent='💎 '+a+' — '+b;document.getElementById('order').scrollIntoView({behavior:'smooth'})}
-function pay(){if(!document.getElementById('pid').value.trim()){alert('Player ID enter karein');return}document.getElementById('payment').style.display='block'}
-function submitProof(){let f=document.getElementById('proof').files[0];if(!f){alert('Transaction screenshot upload karein');return}document.getElementById('msg').textContent='Proof selected: '+f.name+'. Actual server upload ke liye backend deploy karna hoga.'}
-</script></body></html>
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');scrollTo(0,0)}
+function showJazzCash(){window.selectedPayment='JazzCash';document.getElementById('jazzcashBox').style.display='block';}
+function continueOrder(){
+const id=document.getElementById('playerId').value.trim();
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+document.getElementById('proofBox').style.display='block';
+document.getElementById('proofBox').scrollIntoView({behavior:'smooth'});
+}
+function submitProof(){
+const id=document.getElementById('playerId').value.trim();
+const file=document.getElementById('proof').files[0];
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+if(!file){alert('Please upload your JazzCash transaction screenshot.');return;}
+document.getElementById('proofStatus').textContent='Payment proof selected: '+file.name+'. This demo page does not upload files to a server yet.';
+}
+function paymentOrder(){
+const method='JazzCash';
+const id=document.getElementById('playerId').value.trim();
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+const msg=encodeURIComponent('Hello MAHAZ STORE, I want to order Free Fire Top Up. Player ID: '+id+' | Payment method: '+method);
+window.open('https://wa.me/923195162683?text='+msg,'_blank');
+}
+function wa(item){const msg=encodeURIComponent('Hello MAHAZ STORE, I want to ask/order: '+item);window.open('https://wa.me/923195162683?text='+msg,'_blank')}
+</script>
+</body></html>Free Fire prices: 70=Rs99, 140=Rs199, 355=Rs499, 720=Rs999. JazzCash: 03155192240.
