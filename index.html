@@ -39,6 +39,7 @@ footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.f
 <button onclick="show('payment',this)">💳 Payment</button>
 <button onclick="show('guild',this)">🏆 Guild Glory</button>
 <button onclick="show('rankpush',this)">🚀 Rank Push</button>
+<button onclick="show('tournament',this)">🏆 Tournament</button>
 <button onclick="show('about',this)">★ About</button>
 <button onclick="show('contact',this)">◉ Contact</button>
 <button onclick="show('account',this)">👤 Account</button>
@@ -73,6 +74,7 @@ footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.f
 <div class="box"><div class="icon">💎</div><h3>Monthly Membership</h3><p>Special member offers</p><button class="buy" onclick="selectProduct('Monthly Membership')">Buy Now</button></div>
 <div class="box"><div class="icon">🎁</div><h3>Weekly Membership</h3><p>Weekly gaming benefits</p><button class="buy" onclick="selectProduct('Weekly Membership')">Buy Now</button></div>
 <div class="box"><div class="icon">🚀</div><h3>Paid Rank Push</h3><p>Choose your target rank</p><button class="buy" onclick="show('rankpush')">Order</button></div>
+<div class="box" onclick="show('tournament')" style="cursor:pointer"><div class="icon">🏆</div><h3>Daily Tournament</h3><p>BR • 7:00 PM • Rs 50</p><button class="buy" onclick="event.stopPropagation();show('tournament')">Join Now</button></div>
 </div></section>
 
 <section id="freefire" class="page"><h2 class="title">FREE <span>FIRE</span></h2><div class="box" style="margin:20px 3%"><h2>Free Fire Services</h2><p>Contact MAHAZ STORE for available services.</p><button class="buy" onclick="wa('Free Fire Services')">Contact on WhatsApp</button></div></section>
@@ -143,6 +145,49 @@ footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.f
 </section>
 
 <!-- PAID RANK PUSH -->
+
+<section id="tournament" class="page">
+<h2 class="title">DAILY <span>TOURNAMENT</span></h2>
+<div class="box" style="margin:20px auto;max-width:800px;text-align:left">
+<div style="text-align:center">
+<div class="icon">🏆</div>
+<h2>MAHAZ Daily Battle Royale</h2>
+<p style="color:#bbb">Daily tournament • Battle Royale • 7:00 PM</p>
+</div>
+
+<div class="rankSummary">
+<div style="font-size:18px">🎮 Mode: <strong>Battle Royale</strong></div>
+<div style="margin-top:8px">📅 Schedule: <strong>Every Day at 7:00 PM</strong></div>
+<div style="margin-top:8px">🎟️ Entry Fee: <strong>Rs 50</strong></div>
+<div style="margin-top:8px">🏆 Prize Pool: <strong style="color:#39e56d">Rs 200</strong></div>
+</div>
+
+<h3 style="margin-top:24px">1️⃣ Player Details</h3>
+<input id="tournamentPlayerId" class="rankInput" placeholder="Free Fire Player ID" inputmode="numeric">
+<input id="tournamentName" class="rankInput" placeholder="Player name">
+
+<h3 style="margin-top:20px">2️⃣ Payment</h3>
+<div style="background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px">
+<p>Send <strong>Rs 50</strong> to JazzCash:</p>
+<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
+<p style="color:#aaa">Payment ke baad transaction screenshot upload karein.</p>
+<input id="tournamentProof" type="file" accept="image/*"
+style="width:100%;padding:10px;margin:12px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
+</div>
+
+<p id="tournamentStatus" style="color:#aaa;margin-top:15px"></p>
+<button class="buy" onclick="submitTournament()">🏆 Register Tournament</button>
+
+<div id="tournamentSuccess" style="display:none;margin-top:20px;text-align:center;padding:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px">
+<div style="font-size:55px">✅</div>
+<h2 style="color:#39e56d">Registration Submitted!</h2>
+<p>Your tournament registration has been submitted for admin verification.</p>
+<p>Registration ID: <strong id="tournamentId" style="color:#39e56d"></strong></p>
+<button class="wa" onclick="wa('Daily Battle Royale Tournament Registration')" style="margin-top:10px">Contact Support ›</button>
+</div>
+</div>
+</section>
+
 <section id="rankpush" class="page">
 <h2 class="title">PAID <span>RANK PUSH</span></h2>
 <div class="box" style="margin:20px auto;max-width:850px;text-align:left">
@@ -330,6 +375,48 @@ async function submitFreeGuildGlory(){
     document.getElementById('freeGuildSuccess').style.display='block';
     localStorage.setItem('lastFreeGuildGloryId',requestId);
   }catch(error){status.style.color='#ff6b6b';status.textContent=error.message||'Could not submit request. Please try again.';}
+}
+
+
+async function submitTournament(){
+  const playerId=document.getElementById('tournamentPlayerId').value.trim();
+  const name=document.getElementById('tournamentName').value.trim();
+  const proof=document.getElementById('tournamentProof').files[0];
+  const status=document.getElementById('tournamentStatus');
+
+  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Free Fire Player ID.';return;}
+  if(!name){status.style.color='#ff6b6b';status.textContent='Please enter your player name.';return;}
+  if(!proof){status.style.color='#ff6b6b';status.textContent='Please upload your Rs 50 JazzCash payment screenshot.';return;}
+  if(proof.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='Payment screenshot must be 5MB or smaller.';return;}
+
+  status.style.color='#aaa';
+  status.textContent='Submitting tournament registration...';
+
+  const fd=new FormData();
+  fd.append('orderType','Daily Battle Royale Tournament');
+  fd.append('mode','Battle Royale');
+  fd.append('schedule','Daily 7:00 PM');
+  fd.append('entryFee','50');
+  fd.append('prizePool','200');
+  fd.append('playerId',playerId);
+  fd.append('playerName',name);
+  fd.append('price','50');
+  fd.append('paymentMethod','JazzCash');
+  fd.append('paymentProof',proof);
+
+  try{
+    const r=await fetch('/api/tournament',{method:'POST',body:fd});
+    const data=await r.json();
+    if(!r.ok) throw new Error(data.message||'Tournament registration failed.');
+    const id=data.registrationId||data.orderId||('TRN-'+Date.now().toString().slice(-8));
+    document.getElementById('tournamentId').textContent=id;
+    document.getElementById('tournamentSuccess').style.display='block';
+    status.textContent='';
+    localStorage.setItem('lastTournamentId',id);
+  }catch(e){
+    status.style.color='#ff6b6b';
+    status.textContent=e.message||'Could not submit registration.';
+  }
 }
 
 /* PAID RANK PUSH */
