@@ -10,62 +10,30 @@ header{background:#07070b;border-bottom:1px solid #e51b2d;position:sticky;top:0;
 .top{min-height:88px;padding:10px 3%;display:flex;align-items:center;gap:18px}.avatar{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid #f01830}
 .brand{font-size:30px;font-weight:900;font-style:italic}.brand b{color:#f01830}.tag{font-size:11px;letter-spacing:5px;color:#ddd;margin-top:4px}
 .actions{margin-left:auto;display:flex;gap:10px}.circle{width:46px;height:46px;border:1px solid #555;border-radius:50%;display:grid;place-items:center;background:#090910;color:white;font-size:22px}
-.nav{display:flex;justify-content:center;gap:8px;padding:8px;border-top:1px solid #191923;overflow-x:auto}.nav button{border:0;background:transparent;color:#fff;padding:11px 22px;border-radius:10px;font-size:16px;cursor:pointer;white-space:nowrap}.nav button:hover,.nav .active{background:#ed172b}
+.nav{display:flex;justify-content:center;gap:8px;padding:8px;border-top:1px solid #191923}.nav button{border:0;background:transparent;color:#fff;padding:11px 28px;border-radius:10px;font-size:17px;cursor:pointer}.nav button:hover,.nav .active{background:#ed172b}
 .page{display:none}.page.active{display:block}.hero{margin:8px;border:1px solid #e51b2d;border-radius:20px;min-height:460px;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.15)),url('mahaz-hero.png') center/cover;display:flex;align-items:center;padding:7%}
 .heroText{max-width:520px}.hero h1{font-size:60px;line-height:.95;margin:10px 0}.hero h1 span{color:#f01830}.hero p{letter-spacing:4px;font-weight:bold}.shop{background:#f01830;color:#fff;border:0;border-radius:30px;padding:15px 32px;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 0 20px #f0183055}
 .features,.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:18px 3%}.products{grid-template-columns:repeat(3,1fr)}.box{background:linear-gradient(145deg,#11111b,#09090f);border:1px solid #4b1019;border-radius:18px;padding:25px;text-align:center}.icon{font-size:40px}.box h3{margin:10px 0}.box p{color:#bbb}.buy{background:#f01830;color:#fff;border:0;border-radius:20px;padding:10px 22px;font-weight:bold;cursor:pointer}
 .title{text-align:center;font-size:40px;font-style:italic}.title span{color:#f01830}
 .help{margin:20px 3%;padding:20px;border:1px solid #e51b2d;border-radius:18px;display:flex;justify-content:space-between;align-items:center;background:#16070b}.wa{background:#12b83f;color:#fff;border:0;border-radius:30px;padding:15px 25px;font-weight:bold;cursor:pointer}
-.rankGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.rankOption{cursor:pointer;transition:.2s}.rankOption:hover{transform:translateY(-2px);border-color:#f01830}.rankOption.selected{border-color:#f01830;box-shadow:0 0 0 2px #f0183033}
-.rankInput{width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0}
-.rankSummary{background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px;margin-top:18px}
 footer{text-align:center;border-top:1px solid #311018;padding:28px;color:#aaa}.footerLogo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #f01830}
-@media(max-width:800px){.features{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.hero h1{font-size:43px}.nav button{padding:9px 12px;font-size:14px}.tag{letter-spacing:2px}.brand{font-size:22px}.rankGrid{grid-template-columns:1fr}}
-@media(max-width:520px){.top{gap:8px}.actions{display:none}.avatar{width:50px;height:50px}.features{grid-template-columns:1fr}}
-
-#siteLock{position:fixed;inset:0;background:#050509;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
-#siteLock .lockBox{width:min(420px,100%);background:linear-gradient(145deg,#11111b,#09090f);border:1px solid #e51b2d;border-radius:20px;padding:32px;text-align:center;box-shadow:0 0 40px #e51b2d33}
-#siteLock .lockLogo{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #f01830;margin-bottom:12px}
-#siteLock input{width:100%;padding:15px;border-radius:10px;border:1px solid #5b1420;background:#050509;color:#fff;margin:15px 0;font-size:18px;text-align:center}
-#siteLock .lockBtn{background:#f01830;color:#fff;border:0;border-radius:25px;padding:13px 30px;font-weight:bold;font-size:16px;cursor:pointer}
-#lockError{color:#ff6b6b;min-height:20px;margin-top:12px}
-body.siteLocked{overflow:hidden}
+@media(max-width:800px){.features{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.hero h1{font-size:43px}.nav button{padding:9px 10px;font-size:14px}.tag{letter-spacing:2px}.brand{font-size:22px}}
+@media(max-width:520px){.top{gap:8px}.actions{display:none}.avatar{width:50px;height:50px}.features{grid-template-columns:1fr}.hero{min-height:400px}}
 </style>
 </head>
-<body class="siteLocked">
-
-<div id="siteLock">
-  <div class="lockBox">
-    <img class="lockLogo" src="mahaz-hero.png" alt="MAHAZ">
-    <h1><span style="color:#f01830">MAHAZ</span> STORE</h1>
-    <p style="color:#bbb">🔒 Enter password to access the website</p>
-    <input id="sitePassword" type="password" placeholder="Enter Password" autocomplete="off"
-      onkeydown="if(event.key==='Enter')unlockSite()">
-    <button class="lockBtn" onclick="unlockSite()">🔓 Unlock Website</button>
-    <div id="lockError"></div>
-  </div>
-</div>
-
+<body>
 <header>
 <div class="top">
 <img class="avatar" src="mahaz-hero.png" alt="MAHAZ logo">
 <div><div class="brand"><b>MAHAZ</b> STORE</div><div class="tag">CREATOR | DREAMER | LEGEND</div></div>
-<div class="actions"><div class="circle">⌕</div><div class="circle">🛒</div><div class="circle">◉</div></div>
+<div class="actions"><button class="circle" onclick="showCoins()" title="Coins">🪙</button><div class="circle">⌕</div><div class="circle">🛒</div><div class="circle">◉</div></div>
 </div>
 <div class="nav">
 <button class="active" onclick="show('home',this)">⌂ Home</button>
 <button onclick="show('store',this)">🎮 Store</button>
-<button onclick="show('freefire',this)">🔥 Free Fire</button>
-<button onclick="show('topup',this)">💎 Top Up</button>
-<button onclick="show('payment',this)">💳 Payment</button>
-<button onclick="show('guild',this)">🏆 Guild Glory</button>
-<button onclick="show('rankpush',this)">🚀 Rank Push</button>
-<button onclick="show('tournament',this)">🏆 Tournament</button><button onclick="show('paidsensi',this)">🎯 Paid Sensi</button>
+<button onclick="show('freefire',this)">🔥 Free Fire</button><button onclick="show('topup',this)">💎 Top Up</button><button onclick="show('payment',this)">💳 Payment</button><button onclick="show('guild',this)">🏆 Guild Glory</button>
 <button onclick="show('about',this)">★ About</button>
 <button onclick="show('contact',this)">◉ Contact</button>
-<button onclick="show('account',this)">👤 Account</button>
-<button onclick="show('orders',this)">📦 Orders</button>
-<button onclick="show('admin',this)">🛠️ Admin</button>
 </div>
 </header>
 
@@ -80,10 +48,12 @@ body.siteLocked{overflow:hidden}
 </div>
 <h2 class="title">FEATURED <span>PRODUCTS</span></h2>
 <div class="products">
-<div class="box" onclick="show('topup')" style="cursor:pointer"><div class="icon">🎮</div><h3>Free Fire Top Up</h3><p>Diamonds & Bundles</p><button class="buy" onclick="event.stopPropagation();show('topup')">Open Top Up</button></div>
+<div class="box" onclick="show('topup')" style="cursor:pointer">
+<div class="icon">🎮</div><h3>Free Fire Top Up</h3><p>Diamonds & Bundles</p>
+<button class="buy" onclick="event.stopPropagation();show('topup')">Open Top Up</button>
+</div>
 <div class="box"><div class="icon">🎮</div><h3>PUBG Mobile Top Up</h3><p>UC & Royale Pass</p><button class="buy" onclick="wa('PUBG Mobile Top Up')">Buy Now</button></div>
 <div class="box"><div class="icon">🔥</div><h3>Free Fire MAX</h3><p>Diamonds & Bundles</p><button class="buy" onclick="wa('Free Fire MAX Top Up')">Buy Now</button></div>
-<div class="box" onclick="show('rankpush')" style="cursor:pointer"><div class="icon">🚀</div><h3>Paid Rank Push</h3><p>Current Rank → Target Rank</p><button class="buy" onclick="event.stopPropagation();show('rankpush')">Open Rank Push</button></div>
 </div>
 <div class="help"><div><h2>Need Help?</h2><p>Contact us on WhatsApp</p></div><button class="wa" onclick="wa('General Inquiry')">Chat on WhatsApp ›</button></div>
 </section>
@@ -92,610 +62,124 @@ body.siteLocked{overflow:hidden}
 <div class="box"><div class="icon">🎮</div><h3>Free Fire</h3><p>Top Up & Gaming Services</p><button class="buy" onclick="wa('Free Fire')">Order</button></div>
 <div class="box"><div class="icon">🎯</div><h3>PUBG Mobile</h3><p>UC & Gaming Services</p><button class="buy" onclick="wa('PUBG Mobile')">Order</button></div>
 <div class="box"><div class="icon">🛒</div><h3>Digital Store</h3><p>Digital products</p><button class="buy" onclick="wa('Digital Store')">Order</button></div>
-<div class="box"><div class="icon">💎</div><h3>Monthly Membership</h3><p>Special member offers</p><button class="buy" onclick="selectProduct('Monthly Membership')">Buy Now</button></div>
-<div class="box"><div class="icon">🎁</div><h3>Weekly Membership</h3><p>Weekly gaming benefits</p><button class="buy" onclick="selectProduct('Weekly Membership')">Buy Now</button></div>
-<div class="box"><div class="icon">🚀</div><h3>Paid Rank Push</h3><p>Choose your target rank</p><button class="buy" onclick="show('rankpush')">Order</button></div>
-<div class="box" onclick="show('tournament')" style="cursor:pointer"><div class="icon">🏆</div><h3>Daily Tournament</h3><p>BR • 7:00 PM • Rs 50</p><button class="buy" onclick="event.stopPropagation();show('tournament')">Join Now</button></div>
-<div class="box" onclick="show('paidsensi')" style="cursor:pointer"><div class="icon">🎯</div><h3>Paid Sensi</h3><p>Device-based sensitivity service</p><button class="buy" onclick="event.stopPropagation();show('paidsensi')">Open</button></div>
 </div></section>
 
 <section id="freefire" class="page"><h2 class="title">FREE <span>FIRE</span></h2><div class="box" style="margin:20px 3%"><h2>Free Fire Services</h2><p>Contact MAHAZ STORE for available services.</p><button class="buy" onclick="wa('Free Fire Services')">Contact on WhatsApp</button></div></section>
 
+
+
 <section id="topup" class="page">
 <h2 class="title">FREE FIRE <span>TOP UP</span></h2>
-<div class="box" style="margin:20px auto;max-width:850px">
-<h2>💎 Step 1 — Select Diamonds</h2><p id="selectedText">Select your Free Fire diamond package.</p>
+<div class="box" style="margin:20px 3%;max-width:850px;margin-left:auto;margin-right:auto">
+<h2>💎 Select Diamonds</h2>
+<p>Choose a package below, then contact MAHAZ STORE on WhatsApp to place your order.</p>
 <div class="products" style="padding:18px 0">
-<div class="box"><h3>💎 70 Diamonds</h3><p>Price: Rs 99</p><button class="buy" onclick="selectDiamond(70,99)">Select</button></div>
-<div class="box"><h3>💎 140 Diamonds</h3><p>Price: Rs 199</p><button class="buy" onclick="selectDiamond(140,199)">Select</button></div>
-<div class="box"><h3>💎 355 Diamonds</h3><p>Price: Rs 499</p><button class="buy" onclick="selectDiamond(355,499)">Select</button></div>
-<div class="box"><h3>💎 720 Diamonds</h3><p>Price: Rs 999</p><button class="buy" onclick="selectDiamond(720,999)">Select</button></div>
+<div class="box"><h3>💎 100 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('100 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 310 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('310 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 520 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('520 Diamonds')">Order</button></div>
+<div class="box"><h3>💎 1060 Diamonds</h3><p>Price: Add Price</p><button class="buy" onclick="wa('1060 Diamonds')">Order</button></div>
 </div>
-<div id="orderStep" style="display:none;text-align:left;margin-top:20px">
-<h2>🎮 Step 2 — Player ID</h2><p id="orderSummary"></p>
-<input id="playerId" placeholder="Enter Free Fire Player ID" inputmode="numeric" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:10px 0 12px">
-<button class="buy" onclick="continueOrder()">Continue to Order ›</button>
+<button class="buy" onclick="wa('Free Fire Top Up')">Order on WhatsApp</button> <button class="buy" onclick="show('payment')">💳 Payment</button>
 </div>
-<div id="paymentStep" style="display:none;text-align:left;margin-top:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px">
-<h2>💳 Step 3 — JazzCash Payment</h2><p>Send <strong id="paymentAmount"></strong> to this JazzCash number:</p>
-<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
-<h2>📸 Step 4 — Transaction Screenshot</h2><p>After payment, upload your transaction screenshot.</p>
-<input id="paymentProof" type="file" accept="image/*" style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-<button class="buy" onclick="submitProof()">Submit Payment Proof</button><p id="paymentProofStatus" style="color:#aaa"></p>
-</div></div>
 </section>
+
 
 <section id="payment" class="page">
 <h2 class="title">SELECT <span>PAYMENT</span></h2>
 <div class="box" style="margin:20px auto;max-width:620px">
-<h2>💳 Payment Method</h2><p>Pay securely using JazzCash.</p>
-<div style="margin:18px 0"><button class="buy" onclick="showJazzCash()">🟢 JazzCash</button></div>
+<h2>💳 Payment Method</h2>
+<p>Pay securely using JazzCash.</p>
+<div style="margin:18px 0">
+<button class="buy" onclick="showJazzCash()">🟢 JazzCash</button>
+</div>
 <div id="jazzcashBox" style="display:none;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px;margin:15px 0">
-<h3>🟢 JazzCash Payment</h3><p>JazzCash Number:</p><div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
-<p>Payment karne ke baad neeche apna Free Fire Player ID enter karke WhatsApp par order details bhejo.</p></div>
-<input id="paymentPlayerId" placeholder="Free Fire Player ID" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin-bottom:12px">
-<button class="buy" onclick="submitPaymentPage()">Continue to Order</button>
+<h3>🟢 JazzCash Payment</h3>
+<p>JazzCash Number:</p>
+<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
+<p>Payment karne ke baad neeche apna Free Fire Player ID enter karke WhatsApp par order details bhejo.</p>
+</div>
+<input id="playerId" placeholder="Free Fire Player ID" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin-bottom:12px">
+<button class="buy" onclick="continueOrder()">Continue to Order</button>
+
 <div id="proofBox" style="display:none;margin-top:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:20px;text-align:left">
-<h3>🧾 JazzCash Payment Proof</h3><p>JazzCash Number: <strong style="color:#39e56d">03155192240</strong></p>
+<h3>🧾 JazzCash Payment Proof</h3>
+<p>JazzCash Number: <strong style="color:#39e56d">03155192240</strong></p>
 <p>Payment transaction ki screenshot/photo upload karein:</p>
 <input id="proof" type="file" accept="image/*" style="width:100%;padding:10px;margin:10px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-<button class="buy" onclick="submitProof()">Submit Payment Proof</button><p id="proofStatus" style="color:#aaa"></p>
-</div></div>
+<button class="buy" onclick="submitProof()">Submit Payment Proof</button>
+<p id="proofStatus" style="color:#aaa"></p>
+</div>
+</div>
 </section>
 
 <section id="guild" class="page">
-<h2 class="title">FREE <span>GUILD GLORY</span></h2>
-<div class="box" style="margin:20px auto;max-width:700px;text-align:left">
-<div style="text-align:center"><div class="icon">🏆</div><h2>Free Guild Glory</h2><p style="color:#bbb">No payment required. Submit your Guild Glory request below.</p></div>
-<div id="freeGuildForm">
-<label style="display:block;margin-top:20px;font-weight:bold">1️⃣ Guild ID</label>
-<input id="freeGuildId" type="text" placeholder="Enter Guild ID" inputmode="numeric" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-<label style="display:block;margin-top:16px;font-weight:bold">2️⃣ Server</label>
-<select id="freeGuildServer" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-<option value="">Select Server</option><option value="Pakistan">Pakistan</option><option value="India">India</option><option value="Bangladesh">Bangladesh</option><option value="Indonesia">Indonesia</option><option value="Brazil">Brazil</option><option value="Other">Other</option>
-</select>
-<label style="display:block;margin-top:16px;font-weight:bold">3️⃣ Player ID</label>
-<input id="freeGuildPlayerId" type="text" placeholder="Enter Free Fire Player ID" inputmode="numeric" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-<label style="display:block;margin-top:16px;font-weight:bold">4️⃣ Guild Glory File</label>
-<p style="color:#aaa;font-size:14px">Upload your Guild Glory file (JPG, PNG or PDF, max 5MB).</p>
-<input id="freeGuildFile" type="file" accept=".jpg,.jpeg,.png,.pdf" style="width:100%;padding:10px;margin:8px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-<p id="freeGuildStatus" style="margin-top:12px;color:#aaa"></p>
-<button class="buy" onclick="submitFreeGuildGlory()" style="margin-top:10px">Submit Free Guild Glory ✓</button>
-</div>
-<div id="freeGuildSuccess" style="display:none;text-align:center;padding:20px 5px"><div style="font-size:65px">✅</div><h2 style="color:#39e56d">Successfully Submitted!</h2><p style="color:#bbb;margin:10px 0">Your Free Guild Glory request has been submitted.</p><p>Request ID: <strong id="freeGuildRequestId" style="color:#39e56d"></strong></p><button class="wa" onclick="wa('Free Guild Glory Request')" style="margin-top:18px">Contact Support ›</button></div>
-</div>
-</section>
-
-<!-- PAID RANK PUSH -->
-
-
-<section id="paidsensi" class="page">
-<h2 class="title">🎯 PAID <span>SENSI</span></h2>
-<div class="box" style="margin:20px auto;max-width:700px;text-align:left">
-<div style="text-align:center">
-<div class="icon">🎯</div>
-<h2>Paid Sensitivity Service</h2>
-<p style="color:#bbb">Select your device, pay via JazzCash, upload proof and receive your order ID.</p>
-</div>
-
-<h3 style="margin-top:24px">1️⃣ Select Device</h3>
-<select id="sensiDevice" onchange="toggleAndroidModels()" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-<option value="">Select Device</option>
-<option value="Android">Android</option>
-</select>
-
-<div id="androidModelBox" style="display:none">
-<h3 style="margin-top:20px">2️⃣ Android Device Model</h3>
-<select id="sensiModel" style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-<option value="">Select Android Model</option>
-<option>Samsung</option>
-<option>Xiaomi / Redmi / POCO</option>
-<option>Vivo</option>
-<option>OPPO</option>
-<option>Realme</option>
-<option>Infinix</option>
-<option>Tecno</option>
-<option>OnePlus</option>
-<option>Google Pixel</option>
-<option>Huawei</option>
-<option>Other</option>
-</select>
-</div>
-
-<h3 style="margin-top:20px">3️⃣ Free Fire Player ID</h3>
-<input id="sensiPlayerId" placeholder="Enter Free Fire Player ID" inputmode="numeric"
-style="width:100%;padding:14px;border-radius:10px;border:1px solid #5b1420;background:#09090f;color:#fff;margin:8px 0">
-
-<h3 style="margin-top:20px">4️⃣ JazzCash Payment</h3>
-<div style="background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px">
-<p>Send your payment to JazzCash:</p>
-<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
-<p style="color:#aaa">Payment amount service ke mutabiq admin se confirm karein.</p>
-</div>
-
-<h3 style="margin-top:20px">5️⃣ Payment Screenshot</h3>
-<input id="sensiProof" type="file" accept="image/*"
-style="width:100%;padding:10px;margin:8px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-
-<p id="sensiStatus" style="color:#aaa;margin-top:14px"></p>
-<button class="buy" onclick="submitPaidSensi()">Submit Paid Sensi ✓</button>
-
-<div id="sensiSuccess" style="display:none;margin-top:20px;text-align:center;padding:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px">
-<div style="font-size:55px">✅</div>
-<h2 style="color:#39e56d">Order Submitted!</h2>
-<p>Your Paid Sensi order has been submitted for verification.</p>
-<p>Order ID: <strong id="sensiOrderId" style="color:#39e56d"></strong></p>
-<button class="wa" onclick="wa('Paid Sensi Order')" style="margin-top:10px">Contact Support ›</button>
-</div>
-</div>
-</section>
-
-<section id="tournament" class="page">
-<h2 class="title">DAILY <span>TOURNAMENT</span></h2>
-<div class="box" style="margin:20px auto;max-width:800px;text-align:left">
-<div style="text-align:center">
+<h2 class="title">GUILD <span>GLORY</span></h2>
+<div class="box" style="margin:20px 3%">
 <div class="icon">🏆</div>
-<h2>MAHAZ Daily Battle Royale</h2>
-<p style="color:#bbb">Daily tournament • Battle Royale • 7:00 PM</p>
+<h2>MAHAZ Guild Glory</h2>
+<p>Guild Glory leaderboard and member stats section.</p>
+<div class="products">
+<div class="box"><h3>Guild Glory</h3><p id="glory">Coming Soon</p></div>
+<div class="box"><h3>Top Player</h3><p id="topplayer">Coming Soon</p></div>
+<div class="box"><h3>Guild Rank</h3><p id="guildrank">Coming Soon</p></div>
 </div>
-
-<div class="rankSummary">
-<div style="font-size:18px">🎮 Mode: <strong>Battle Royale</strong></div>
-<div style="margin-top:8px">📅 Schedule: <strong>Every Day at 7:00 PM</strong></div>
-<div style="margin-top:8px">🎟️ Entry Fee: <strong>Rs 50</strong></div>
-<div style="margin-top:8px">🏆 Prize Pool: <strong style="color:#39e56d">Rs 200</strong></div>
-</div>
-
-<h3 style="margin-top:24px">1️⃣ Player Details</h3>
-<input id="tournamentPlayerId" class="rankInput" placeholder="Free Fire Player ID" inputmode="numeric">
-<input id="tournamentName" class="rankInput" placeholder="Player name">
-
-<h3 style="margin-top:20px">2️⃣ Payment</h3>
-<div style="background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px">
-<p>Send <strong>Rs 50</strong> to JazzCash:</p>
-<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
-<p style="color:#aaa">Payment ke baad transaction screenshot upload karein.</p>
-<input id="tournamentProof" type="file" accept="image/*"
-style="width:100%;padding:10px;margin:12px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-</div>
-
-<p id="tournamentStatus" style="color:#aaa;margin-top:15px"></p>
-<button class="buy" onclick="submitTournament()">🏆 Register Tournament</button>
-
-<div id="tournamentSuccess" style="display:none;margin-top:20px;text-align:center;padding:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px">
-<div style="font-size:55px">✅</div>
-<h2 style="color:#39e56d">Registration Submitted!</h2>
-<p>Your tournament registration has been submitted for admin verification.</p>
-<p>Registration ID: <strong id="tournamentId" style="color:#39e56d"></strong></p>
-<button class="wa" onclick="wa('Daily Battle Royale Tournament Registration')" style="margin-top:10px">Contact Support ›</button>
-</div>
-</div>
-</section>
-
-<section id="rankpush" class="page">
-<h2 class="title">PAID <span>RANK PUSH</span></h2>
-<div class="box" style="margin:20px auto;max-width:850px;text-align:left">
-<div style="text-align:center">
-<div class="icon">🚀</div>
-<h2>Free Fire Rank Push</h2>
-<p style="color:#bbb">Choose mode, current rank and target rank. Your order will be sent for manual/authorized service processing.</p>
-</div>
-
-<h3 style="margin-top:25px">1️⃣ Select Mode</h3>
-<div class="rankGrid">
-<div id="modeBR" class="box rankOption" onclick="selectRankMode('Battle Royale')"><div class="icon">🏆</div><h3>Battle Royale</h3><p>BR Rank Push</p></div>
-<div id="modeCS" class="box rankOption" onclick="selectRankMode('Clash Squad')"><div class="icon">⚔️</div><h3>Clash Squad</h3><p>CS Rank Push</p></div>
-</div>
-
-<h3 style="margin-top:25px">2️⃣ Current Rank</h3>
-<select id="currentRank" class="rankInput">
-<option value="">Select Current Rank</option>
-<option>Bronze</option><option>Silver</option><option>Gold</option><option>Platinum</option><option>Diamond</option><option>Heroic</option><option>Master</option><option>Grandmaster</option>
-</select>
-
-<h3 style="margin-top:20px">3️⃣ Target Rank</h3>
-<select id="targetRank" class="rankInput">
-<option value="">Select Target Rank</option>
-<option>Silver</option><option>Gold</option><option>Platinum</option><option>Diamond</option><option>Heroic</option><option>Master</option><option>Grandmaster</option>
-</select>
-
-<h3 style="margin-top:20px">4️⃣ Player Details</h3>
-<input id="rankPlayerId" class="rankInput" placeholder="Free Fire Player ID" inputmode="numeric">
-<input id="rankWhatsApp" class="rankInput" placeholder="WhatsApp number">
-
-<h3 style="margin-top:20px">5️⃣ Price</h3>
-<div id="rankPrice" class="rankSummary">
-<strong>Select current and target rank to calculate the price.</strong>
-</div>
-
-<h3 style="margin-top:20px">6️⃣ Payment</h3>
-<div style="background:#07120a;border:1px solid #16b84e;border-radius:14px;padding:18px">
-<p>Send the displayed amount to JazzCash:</p>
-<div style="font-size:28px;font-weight:900;color:#39e56d;letter-spacing:2px">03155192240</div>
-<input id="rankProof" type="file" accept="image/*" style="width:100%;padding:10px;margin:12px 0;background:#09090f;color:#fff;border:1px solid #444;border-radius:8px">
-</div>
-
-<p id="rankStatus" style="color:#aaa;margin-top:15px"></p>
-<button class="buy" onclick="submitRankPush()" style="margin-top:8px">🚀 Submit Rank Push Order</button>
-
-<div id="rankSuccess" style="display:none;margin-top:20px;text-align:center;padding:20px;background:#07120a;border:1px solid #16b84e;border-radius:14px">
-<div style="font-size:55px">✅</div>
-<h2 style="color:#39e56d">Rank Push Order Submitted!</h2>
-<p>Your order has been sent for processing.</p>
-<p>Order ID: <strong id="rankOrderId" style="color:#39e56d"></strong></p>
-<button class="wa" onclick="wa('Paid Rank Push Order')" style="margin-top:10px">Contact Support ›</button>
-</div>
+<button class="buy" onclick="wa('Guild Glory')">Contact for Guild Glory</button>
 </div>
 </section>
 
 <section id="about" class="page"><div class="box" style="margin:40px 6%"><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><h2>About MAHAZ STORE</h2><p>Gaming-focused store interface with a cyberpunk MAHAZ theme.</p></div></section>
+
 <section id="contact" class="page"><div class="box" style="margin:40px 6%"><h2>Contact MAHAZ STORE</h2><p>WhatsApp support</p><button class="wa" onclick="wa('General Inquiry')">Open WhatsApp</button></div></section>
 </main>
 
-<section id="account" class="page">
-<h2 class="title">MY <span>ACCOUNT</span></h2>
-<div class="box" style="margin:20px auto;max-width:650px;text-align:left">
-<h2>👤 Customer Account</h2>
-<input id="accountName" placeholder="Your name" style="width:100%;padding:14px;margin:7px 0;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
-<input id="accountPhone" placeholder="WhatsApp number" style="width:100%;padding:14px;margin:7px 0;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
-<button class="buy" onclick="saveAccount()">Save Account</button><p id="accountStatus" style="color:#aaa"></p>
-</div>
-</section>
-
-<section id="orders" class="page">
-<h2 class="title">MY <span>ORDERS</span></h2>
-<div class="box" style="margin:20px auto;max-width:850px;text-align:left">
-<input id="orderSearch" placeholder="Enter Order ID" style="width:100%;padding:14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
-<button class="buy" onclick="lookupOrder()">Track Order</button>
-<div id="orderResult" style="margin-top:15px;color:#bbb"></div>
-</div>
-</section>
-
-<section id="admin" class="page">
-<h2 class="title">ADMIN <span>PANEL</span></h2>
-<div class="box" style="margin:20px auto;max-width:950px;text-align:left">
-<p>Admin panel: enter your admin key to load orders.</p>
-<input id="adminKey" type="password" placeholder="Admin key" style="width:100%;padding:14px;border-radius:10px;background:#09090f;color:#fff;border:1px solid #5b1420">
-<button class="buy" onclick="loadAdminOrders()">Load Orders</button>
-<div id="adminOrders" style="overflow:auto;margin-top:15px"></div>
-</div>
-</section>
-
 <footer><img class="footerLogo" src="mahaz-hero.png" alt="MAHAZ"><p>MAHAZ STORE • CREATOR | DREAMER | LEGEND</p><p>© 2026 MAHAZ STORE. All Rights Reserved.</p></footer>
 
-
-
 <script>
-function toggleAndroidModels(){
-  const device=document.getElementById('sensiDevice').value;
-  document.getElementById('androidModelBox').style.display = device === 'Android' ? 'block' : 'none';
-}
-</script>
-
-<script>
-async function submitPaidSensi(){
-  const device=document.getElementById('sensiDevice').value;
-  const model=document.getElementById('sensiModel')?.value || '';
-  const playerId=document.getElementById('sensiPlayerId').value.trim();
-  const proof=document.getElementById('sensiProof').files[0];
-  const status=document.getElementById('sensiStatus');
-
-  if(!device){status.style.color='#ff6b6b';status.textContent='Please select your device.';return;}
-  if(device==='Android' && !model){status.style.color='#ff6b6b';status.textContent='Please select your Android device model.';return;}
-  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Free Fire Player ID.';return;}
-  if(!proof){status.style.color='#ff6b6b';status.textContent='Please upload your JazzCash payment screenshot.';return;}
-  if(proof.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='Screenshot must be 5MB or smaller.';return;}
-
-  status.style.color='#aaa';
-  status.textContent='Submitting order...';
-
-  const fd=new FormData();
-  fd.append('orderType','Paid Sensi');
-  fd.append('device',device);
-  fd.append('deviceModel',model);
-  fd.append('playerId',playerId);
-  fd.append('paymentMethod','JazzCash');
-  fd.append('jazzCashNumber','03155192240');
-  fd.append('paymentProof',proof);
-
-  try{
-    const r=await fetch('/api/paid-sensi',{method:'POST',body:fd});
-    const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Order submission failed.');
-    const id=data.orderId||('SENSI-'+Date.now().toString().slice(-8));
-    document.getElementById('sensiOrderId').textContent=id;
-    document.getElementById('sensiSuccess').style.display='block';
-    status.textContent='';
-    localStorage.setItem('lastPaidSensiOrderId',id);
-  }catch(e){
-    status.style.color='#ff6b6b';
-    status.textContent=e.message||'Could not submit order.';
-  }
-}
-</script>
-
-<script>
-const SITE_PASSWORD = '2026';
-
-function unlockSite(){
-  const input = document.getElementById('sitePassword').value;
-  const error = document.getElementById('lockError');
-
-  if(input === SITE_PASSWORD){
-    document.getElementById('siteLock').style.display='none';
-    document.body.classList.remove('siteLocked');
-    sessionStorage.setItem('mahazUnlocked','1');
-  }else{
-    error.textContent='Incorrect password. Please try again.';
-    document.getElementById('sitePassword').value='';
-    document.getElementById('sitePassword').focus();
-  }
-}
-
-if(sessionStorage.getItem('mahazUnlocked') === '1'){
-  window.addEventListener('DOMContentLoaded',()=>{
-    document.getElementById('siteLock').style.display='none';
-    document.body.classList.remove('siteLocked');
-  });
-}
-</script>
-
-<script>
-let selectedDiamond=null, selectedPrice=null;
-let rankMode='', rankPrice=0;
-
-function show(id,btn){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  const page=document.getElementById(id); if(page) page.classList.add('active');
-  document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  scrollTo(0,0);
-}
-
-function selectDiamond(diamond,price){
-  selectedDiamond=diamond; selectedPrice=price;
-  document.getElementById('selectedText').innerHTML='Selected: <strong style="color:#f01830">'+diamond+' Diamonds — Rs '+price+'</strong>';
-  document.getElementById('orderStep').style.display='block';
-  document.getElementById('paymentStep').style.display='none';
-  document.getElementById('orderSummary').innerHTML='💎 Package: <strong>'+diamond+' Diamonds</strong><br>💰 Price: <strong>Rs '+price+'</strong>';
-  document.getElementById('orderStep').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');scrollTo(0,0)}
+function showJazzCash(){window.selectedPayment='JazzCash';document.getElementById('jazzcashBox').style.display='block';}
 function continueOrder(){
-  const id=document.getElementById('playerId').value.trim();
-  if(!selectedDiamond){alert('Please select a diamond package first.');return;}
-  if(!id){alert('Please enter your Free Fire Player ID.');return;}
-  document.getElementById('paymentAmount').textContent='Rs '+selectedPrice;
-  document.getElementById('paymentStep').style.display='block';
-  document.getElementById('paymentStep').scrollIntoView({behavior:'smooth',block:'start'});
+const id=document.getElementById('playerId').value.trim();
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+document.getElementById('proofBox').style.display='block';
+document.getElementById('proofBox').scrollIntoView({behavior:'smooth'});
 }
-
-async function submitProof(){
-  const id=document.getElementById('playerId').value.trim();
-  const file=document.getElementById('proof').files[0];
-  if(!selectedDiamond){alert('Please select a diamond package first.');return;}
-  if(!id){alert('Please enter your Free Fire Player ID.');return;}
-  if(!file){alert('Please upload your JazzCash transaction screenshot.');return;}
-  const status=document.getElementById('proofStatus'); status.textContent='Submitting order...';
-  const fd=new FormData();
-  fd.append('playerId',id); fd.append('diamonds',selectedDiamond); fd.append('price',selectedPrice);
-  fd.append('paymentMethod','JazzCash'); fd.append('paymentProof',file);
-  try{
-    const r=await fetch('/api/orders',{method:'POST',body:fd});
-    const data=await r.json(); if(!r.ok) throw new Error(data.message||'Submission failed');
-    localStorage.setItem('lastOrderId',data.orderId);
-    status.style.color='#39e56d'; status.textContent='Order submitted! Order ID: '+data.orderId;
-  }catch(e){status.style.color='#ff6b6b';status.textContent=e.message;}
+function submitProof(){
+const id=document.getElementById('playerId').value.trim();
+const file=document.getElementById('proof').files[0];
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+if(!file){alert('Please upload your JazzCash transaction screenshot.');return;}
+document.getElementById('proofStatus').textContent='Payment proof selected: '+file.name+'. This demo page does not upload files to a server yet.';
 }
-
-function showJazzCash(){document.getElementById('jazzcashBox').style.display='block';}
-async function submitPaymentPage(){
-  const id=document.getElementById('paymentPlayerId').value.trim();
-  const file=document.getElementById('paymentProof')?.files[0];
-  const status=document.getElementById('paymentProofStatus') || document.getElementById('proofStatus');
-  if(!id || !file){status.textContent='Enter Player ID and upload screenshot.';return;}
-  const fd=new FormData();
-  fd.append('playerId',id); fd.append('diamonds','Payment Page Order'); fd.append('price','N/A');
-  fd.append('paymentMethod','JazzCash'); fd.append('paymentProof',file);
-  status.textContent='Submitting...';
-  try{
-    const r=await fetch('/api/orders',{method:'POST',body:fd}); const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Failed');
-    status.style.color='#39e56d'; status.textContent='Submitted. Order ID: '+data.orderId;
-  }catch(e){status.style.color='#ff6b6b';status.textContent=e.message;}
+function paymentOrder(){
+const method='JazzCash';
+const id=document.getElementById('playerId').value.trim();
+if(!id){alert('Please enter your Free Fire Player ID.');return;}
+const msg=encodeURIComponent('Hello MAHAZ STORE, I want to order Free Fire Top Up. Player ID: '+id+' | Payment method: '+method);
+window.open('https://wa.me/923195162683?text='+msg,'_blank');
 }
-
-function wa(item){
-  const msg=encodeURIComponent('Hello MAHAZ STORE, I want to ask/order: '+item);
-  window.open('https://wa.me/923195162683?text='+msg,'_blank');
-}
-function selectProduct(item){wa(item);}
-
-async function submitFreeGuildGlory(){
-  const guildId=document.getElementById('freeGuildId').value.trim();
-  const server=document.getElementById('freeGuildServer').value;
-  const playerId=document.getElementById('freeGuildPlayerId').value.trim();
-  const file=document.getElementById('freeGuildFile').files[0];
-  const status=document.getElementById('freeGuildStatus');
-  if(!guildId){status.style.color='#ff6b6b';status.textContent='Please enter your Guild ID.';return;}
-  if(!server){status.style.color='#ff6b6b';status.textContent='Please select your Server.';return;}
-  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Player ID.';return;}
-  if(!file){status.style.color='#ff6b6b';status.textContent='Please upload your Guild Glory file.';return;}
-  const allowed=['image/jpeg','image/png','application/pdf'];
-  if(!allowed.includes(file.type)){status.style.color='#ff6b6b';status.textContent='Only JPG, PNG or PDF files are allowed.';return;}
-  if(file.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='File must be 5MB or smaller.';return;}
-  status.style.color='#aaa';status.textContent='Submitting your free request...';
-  const fd=new FormData();
-  fd.append('guildId',guildId);fd.append('server',server);fd.append('playerId',playerId);fd.append('guildGloryFile',file);fd.append('orderType','Free Guild Glory');fd.append('price','0');fd.append('paymentMethod','Free');
-  try{
-    const response=await fetch('/api/guild-glory',{method:'POST',body:fd});const data=await response.json();
-    if(!response.ok) throw new Error(data.message||'Submission failed.');
-    const requestId=data.orderId||data.requestId||('FGG-'+Date.now().toString().slice(-8));
-    document.getElementById('freeGuildRequestId').textContent=requestId;
-    document.getElementById('freeGuildForm').style.display='none';
-    document.getElementById('freeGuildSuccess').style.display='block';
-    localStorage.setItem('lastFreeGuildGloryId',requestId);
-  }catch(error){status.style.color='#ff6b6b';status.textContent=error.message||'Could not submit request. Please try again.';}
-}
-
-
-async function submitTournament(){
-  const playerId=document.getElementById('tournamentPlayerId').value.trim();
-  const name=document.getElementById('tournamentName').value.trim();
-  const proof=document.getElementById('tournamentProof').files[0];
-  const status=document.getElementById('tournamentStatus');
-
-  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Free Fire Player ID.';return;}
-  if(!name){status.style.color='#ff6b6b';status.textContent='Please enter your player name.';return;}
-  if(!proof){status.style.color='#ff6b6b';status.textContent='Please upload your Rs 50 JazzCash payment screenshot.';return;}
-  if(proof.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='Payment screenshot must be 5MB or smaller.';return;}
-
-  status.style.color='#aaa';
-  status.textContent='Submitting tournament registration...';
-
-  const fd=new FormData();
-  fd.append('orderType','Daily Battle Royale Tournament');
-  fd.append('mode','Battle Royale');
-  fd.append('schedule','Daily 7:00 PM');
-  fd.append('entryFee','50');
-  fd.append('prizePool','200');
-  fd.append('playerId',playerId);
-  fd.append('playerName',name);
-  fd.append('price','50');
-  fd.append('paymentMethod','JazzCash');
-  fd.append('paymentProof',proof);
-
-  try{
-    const r=await fetch('/api/tournament',{method:'POST',body:fd});
-    const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Tournament registration failed.');
-    const id=data.registrationId||data.orderId||('TRN-'+Date.now().toString().slice(-8));
-    document.getElementById('tournamentId').textContent=id;
-    document.getElementById('tournamentSuccess').style.display='block';
-    status.textContent='';
-    localStorage.setItem('lastTournamentId',id);
-  }catch(e){
-    status.style.color='#ff6b6b';
-    status.textContent=e.message||'Could not submit registration.';
-  }
-}
-
-/* PAID RANK PUSH */
-function selectRankMode(mode){
-  rankMode=mode;
-  document.getElementById('modeBR').classList.toggle('selected',mode==='Battle Royale');
-  document.getElementById('modeCS').classList.toggle('selected',mode==='Clash Squad');
-  calculateRankPrice();
-}
-
-function rankValue(rank){
-  const ranks={Bronze:1,Silver:2,Gold:3,Platinum:4,Diamond:5,Heroic:6,Master:7,Grandmaster:8};
-  return ranks[rank]||0;
-}
-
-function calculateRankPrice(){
-  const current=document.getElementById('currentRank').value;
-  const target=document.getElementById('targetRank').value;
-  const box=document.getElementById('rankPrice');
-  if(!current || !target){
-    rankPrice=0;
-    box.innerHTML='<strong>Select current and target rank to calculate the price.</strong>';
-    return;
-  }
-  if(rankValue(target)<=rankValue(current)){
-    rankPrice=0;
-    box.innerHTML='<strong style="color:#ff6b6b">Target rank must be higher than current rank.</strong>';
-    return;
-  }
-  const steps=rankValue(target)-rankValue(current);
-  // Example storefront pricing. Change these values whenever you set your final rates.
-  rankPrice=steps*250;
-  if(rankMode==='Clash Squad') rankPrice+=100;
-  box.innerHTML='<div style="font-size:18px">Current: <strong>'+current+'</strong><br>Target: <strong>'+target+'</strong><br>Mode: <strong>'+(rankMode||'Not selected')+'</strong></div><hr style="border-color:#25442d"><div style="font-size:28px;color:#39e56d;font-weight:900">Rs '+rankPrice+'</div>';
-}
-
-document.getElementById('currentRank').addEventListener('change',calculateRankPrice);
-document.getElementById('targetRank').addEventListener('change',calculateRankPrice);
-
-async function submitRankPush(){
-  const current=document.getElementById('currentRank').value;
-  const target=document.getElementById('targetRank').value;
-  const playerId=document.getElementById('rankPlayerId').value.trim();
-  const whatsapp=document.getElementById('rankWhatsApp').value.trim();
-  const proof=document.getElementById('rankProof').files[0];
-  const status=document.getElementById('rankStatus');
-
-  if(!rankMode){status.style.color='#ff6b6b';status.textContent='Please select Battle Royale or Clash Squad.';return;}
-  if(!current || !target){status.style.color='#ff6b6b';status.textContent='Please select current and target rank.';return;}
-  if(rankValue(target)<=rankValue(current)){status.style.color='#ff6b6b';status.textContent='Target rank must be higher than current rank.';return;}
-  if(!playerId){status.style.color='#ff6b6b';status.textContent='Please enter your Free Fire Player ID.';return;}
-  if(!whatsapp){status.style.color='#ff6b6b';status.textContent='Please enter your WhatsApp number.';return;}
-  if(!proof){status.style.color='#ff6b6b';status.textContent='Please upload your JazzCash payment screenshot.';return;}
-  if(proof.size>5*1024*1024){status.style.color='#ff6b6b';status.textContent='Payment screenshot must be 5MB or smaller.';return;}
-
-  status.style.color='#aaa';status.textContent='Submitting Rank Push order...';
-
-  const fd=new FormData();
-  fd.append('orderType','Paid Rank Push');
-  fd.append('mode',rankMode);
-  fd.append('currentRank',current);
-  fd.append('targetRank',target);
-  fd.append('playerId',playerId);
-  fd.append('whatsapp',whatsapp);
-  fd.append('price',String(rankPrice));
-  fd.append('paymentMethod','JazzCash');
-  fd.append('paymentProof',proof);
-
-  try{
-    const r=await fetch('/api/rank-push',{method:'POST',body:fd});
-    const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Rank Push order failed.');
-    const orderId=data.orderId||('RP-'+Date.now().toString().slice(-8));
-    document.getElementById('rankOrderId').textContent=orderId;
-    document.getElementById('rankSuccess').style.display='block';
-    status.textContent='';
-    localStorage.setItem('lastRankPushOrderId',orderId);
-  }catch(e){
-    status.style.color='#ff6b6b';
-    status.textContent=e.message||'Could not submit Rank Push order.';
-  }
-}
-
-function saveAccount(){
-  localStorage.setItem('mahazAccount',JSON.stringify({name:document.getElementById('accountName').value.trim(),phone:document.getElementById('accountPhone').value.trim()}));
-  document.getElementById('accountStatus').textContent='Account details saved on this device.';
-}
-function loadAccount(){
-  try{
-    const a=JSON.parse(localStorage.getItem('mahazAccount')||'null');
-    if(a){document.getElementById('accountName').value=a.name||'';document.getElementById('accountPhone').value=a.phone||'';}
-  }catch{}
-}
-
-async function lookupOrder(){
-  const id=document.getElementById('orderSearch').value.trim();
-  const out=document.getElementById('orderResult');
-  if(!id){out.textContent='Enter an Order ID.';return;}
-  out.textContent='Checking...';
-  try{
-    const r=await fetch('/api/orders/'+encodeURIComponent(id));const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Order not found');
-    out.innerHTML='<b>Order:</b> '+data.orderId+'<br><b>Player ID:</b> '+data.playerId+'<br><b>Type:</b> '+(data.orderType||data.diamonds||'')+'<br><b>Price:</b> Rs '+data.price+'<br><b>Status:</b> '+data.status+'<br><b>Created:</b> '+new Date(data.createdAt).toLocaleString();
-  }catch(e){out.textContent=e.message;}
-}
-
-async function loadAdminOrders(){
-  const key=document.getElementById('adminKey').value;
-  const out=document.getElementById('adminOrders');out.textContent='Loading...';
-  try{
-    const r=await fetch('/api/orders',{headers:{'x-admin-key':key}});const data=await r.json();
-    if(!r.ok) throw new Error(data.message||'Unauthorized');
-    if(!data.length){out.textContent='No orders yet.';return;}
-    out.innerHTML='<table style="width:100%;border-collapse:collapse"><tr><th>Order</th><th>Player ID</th><th>Type</th><th>Price</th><th>Status</th><th>Proof</th></tr>'+
-      data.map(o=>'<tr><td>'+o.orderId+'</td><td>'+o.playerId+'</td><td>'+(o.orderType||o.diamonds||'')+'</td><td>'+o.price+'</td><td>'+o.status+'</td><td>'+(o.paymentProof?.filename?'<a href="/uploads/'+encodeURIComponent(o.paymentProof.filename)+'" target="_blank">View</a>':'-')+'</td></tr>').join('')+'</table>';
-  }catch(e){out.textContent=e.message;}
-}
-loadAccount();
+function wa(item){const msg=encodeURIComponent('Hello MAHAZ STORE, I want to ask/order: '+item);window.open('https://wa.me/923195162683?text='+msg,'_blank')}
 </script>
-</body>
-</html>
+
+<div id="coinsPanel" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;padding:20px">
+  <div style="width:min(420px,100%);background:#11111a;border:1px solid #e51b2d;border-radius:18px;padding:24px;text-align:center">
+    <div style="font-size:44px">🪙</div>
+    <h2>My Coins</h2>
+    <p style="color:#aaa">Your current MAHAZ STORE coin balance</p>
+    <div style="font-size:42px;font-weight:900;color:#39e56d;margin:16px">
+      <span id="coinBalanceModal">0</span> Coins
+    </div>
+    <button class="buy" onclick="closeCoins()">Close</button>
+  </div>
+</div>
+
+<script>
+function showCoins(){
+  const p=document.getElementById('coinsPanel');
+  if(p)p.style.display='flex';
+}
+function closeCoins(){
+  const p=document.getElementById('coinsPanel');
+  if(p)p.style.display='none';
+}
+</script>
+</body></html>Free Fire prices: 70=Rs99, 140=Rs199, 355=Rs499, 720=Rs999. JazzCash: 03155192240.
